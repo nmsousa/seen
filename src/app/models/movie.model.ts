@@ -12,6 +12,9 @@ export class Movie {
     runtime: number; // duration in minutes
     seenStatus: SeenStatus = SeenStatus.HOME;
 
+    // UI properties
+    isExpanded: boolean;
+
     constructor() {
     }
 }

@@ -3,12 +3,27 @@ ion-searchbar {
     padding-inline-end: 16px;
 }
 
-ion-img { // movie poster
-    width: 50px;
-    height: auto;
-}
-
 ion-content {
+
+    .main-details-row {
+        padding-top: 6px;
+        padding-bottom: 6px;
+
+        ion-img { // movie poster
+            width: 50px;
+            height: auto;
+        }
+
+        .movie-title-label {
+            margin-bottom: 6px;
+        }
+
+        .movie-year-label {
+            margin-bottom: 6px;
+            color: var(--ion-color-medium);
+        }
+    }
+
     ion-fab-button { // add movie button
         position: fixed;
         bottom: 30px;

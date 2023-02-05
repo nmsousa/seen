@@ -60,4 +60,8 @@ export class HomePage implements OnInit {
             this.dataSource = [...this.originalDataSource];
         }
     }
+
+    onShowDetails(movie: Movie) {
+        movie.isExpanded = !movie.isExpanded;
+    }
 }

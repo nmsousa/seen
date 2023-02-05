@@ -32,12 +32,49 @@
     <!--    </ion-header>-->
 
     <ion-list>
-        <ion-item *ngFor="let movie of dataSource">
-            <ion-img class="ion-padding-vertical" [src]="movie.posterUrl" (ionError)="onImgLoadError(movie)"></ion-img>
-            <ion-label class="ion-margin-start">{{movie.title}} ({{movie.year}})</ion-label>
-            <ion-label>{{movie.seenStatus}}</ion-label>
-            <ion-label>{{movie.actors}}</ion-label>
-        </ion-item>
+        <ion-item-sliding *ngFor="let movie of dataSource">
+            <ion-item class="ion-no-padding" (click)="onShowDetails(movie)">
+                <ion-grid>
+                    <ion-row class="main-details-row">
+                        <ion-col size="auto">
+                            <ion-img [src]="movie.posterUrl"
+                                     (ionError)="onImgLoadError(movie)"></ion-img>
+                        </ion-col>
+                        <ion-col size="auto">
+                            <ion-label class="movie-title-label">{{movie.title}}</ion-label>
+                            <ion-label class="movie-year-label">{{movie.year}}</ion-label>
+                            <ion-chip class="ion-no-margin" color="primary">{{movie.seenStatus}}</ion-chip>
+                        </ion-col>
+                        <!--                        <ion-col style="display: flex" class="ion-justify-content-end">-->
+                        <!--                            <ion-button fill="clear" color="medium">-->
+                        <!--                                <ion-icon slot="icon-only" name="chevron-down-circle-sharp"></ion-icon>-->
+                        <!--                            </ion-button>-->
+                        <!--                        </ion-col>-->
+                    </ion-row>
+                    <!-- Details row -->
+                    <div *ngIf="movie.isExpanded">
+                        <ion-title class="ion-no-padding" color="medium">Plot</ion-title>
+                        <ion-label class="ion-text-wrap">{{movie.plot}}</ion-label>
+                        <br>
+                        <ion-title class="ion-no-padding" color="medium">Director</ion-title>
+                        <ion-label class="ion-text-wrap">{{movie.director}}</ion-label>
+                        <br>
+                        <ion-title class="ion-no-padding" color="medium">Actors</ion-title>
+                        <ion-label class="ion-text-wrap">{{movie.actors}}</ion-label>
+                    </div>
+                </ion-grid>
+            </ion-item>
+
+            <!-- Slide Options -->
+            <ion-item-options>
+                <ion-item-option>
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                </ion-item-option>
+                <ion-item-option color="danger">
+                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
     </ion-list>
 
     <ion-fab>
