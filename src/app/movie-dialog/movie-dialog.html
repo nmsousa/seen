@@ -1,50 +1,42 @@
-<ion-modal #modal [isOpen]="isOpen">
-    <ng-template>
+<!--<ion-modal #modal (willDismiss)="onWillDismiss()">-->
+<!--    <ng-template>-->
         <ion-content>
             <ion-toolbar>
-                <ion-title>Modal</ion-title>
+                <ion-title>Movie Details:</ion-title>
                 <ion-buttons slot="end">
-                    <ion-button color="light" (click)="modal.dismiss()">Close</ion-button>
+                    <ion-button fill="solid" (click)="cancel()">Close</ion-button>
+                    <ion-button color="primary" fill="solid" (click)="confirm()">Create</ion-button>
                 </ion-buttons>
             </ion-toolbar>
-            <ion-list>
-                <ion-item>
-                    <ion-avatar slot="start">
-                        <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
-                    </ion-avatar>
-                    <ion-label>
-                        <h2>Connor Smith</h2>
-                        <p>Sales Rep</p>
-                    </ion-label>
-                </ion-item>
-                <ion-item>
-                    <ion-avatar slot="start">
-                        <ion-img src="https://i.pravatar.cc/300?u=a"></ion-img>
-                    </ion-avatar>
-                    <ion-label>
-                        <h2>Daniel Smith</h2>
-                        <p>Product Designer</p>
-                    </ion-label>
-                </ion-item>
-                <ion-item>
-                    <ion-avatar slot="start">
-                        <ion-img src="https://i.pravatar.cc/300?u=d"></ion-img>
-                    </ion-avatar>
-                    <ion-label>
-                        <h2>Greg Smith</h2>
-                        <p>Director of Operations</p>
-                    </ion-label>
-                </ion-item>
-                <ion-item>
-                    <ion-avatar slot="start">
-                        <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
-                    </ion-avatar>
-                    <ion-label>
-                        <h2>Zoey Smith</h2>
-                        <p>CEO</p>
-                    </ion-label>
-                </ion-item>
-            </ion-list>
+            <!-- Title -->
+            <ion-item>
+                <ion-label position="stacked">Title</ion-label>
+                <ion-input type="text" [(ngModel)]="movie.title"></ion-input>
+            </ion-item>
+            <!-- Year -->
+            <ion-item>
+                <ion-label position="stacked">Year</ion-label>
+                <ion-input type="number" [(ngModel)]="movie.year"></ion-input>
+            </ion-item>
+            <!-- Seen Status -->
+            <ion-item>
+                <ion-label position="stacked">Seen Status</ion-label>
+                <ion-select [(ngModel)]="movie.seenStatus">
+                    <ion-select-option [value]="SeenStatus.HOME">Home</ion-select-option>
+                    <ion-select-option [value]="SeenStatus.WATCHLIST">Watchlist</ion-select-option>
+                    <ion-select-option [value]="SeenStatus.CINEMA">Cinema</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <!-- Actors -->
+            <ion-item>
+                <ion-label position="stacked">Actors</ion-label>
+                <ion-input type="text" [(ngModel)]="movie.actors"></ion-input>
+            </ion-item>
+            <!-- Plot -->
+            <ion-item>
+                <ion-label position="stacked">Plot</ion-label>
+                <ion-textarea [(ngModel)]="movie.plot"></ion-textarea>
+            </ion-item>
         </ion-content>
-    </ng-template>
-</ion-modal>
+<!--    </ng-template>-->
+<!--</ion-modal>-->

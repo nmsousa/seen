@@ -12,28 +12,13 @@
                 </ion-col>
                 <ion-col>
                     <ion-buttons class="ion-justify-content-end">
-                        <ion-button>Edit</ion-button>
-                        <ion-button>Duplicate</ion-button>
-                        <ion-button color="danger">Delete</ion-button>
+                        <ion-button fill="solid">Edit</ion-button>
+                        <ion-button fill="solid">Duplicate</ion-button>
+                        <ion-button fill="solid" color="danger">Delete</ion-button>
                     </ion-buttons>
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <!--        <ion-grid>-->
-        <!--            <ion-row>-->
-        <!--                <ion-searchbar placeholder="Search movies"></ion-searchbar>-->
-        <!--            </ion-row>-->
-        <!--            <ion-row>-->
-        <!--                <ion-label class="ion-padding-start" slot="start">{{dataSource.length}} movies</ion-label>-->
-        <!--                <ion-buttons slot="end">-->
-        <!--                    <ion-button>Edit</ion-button>-->
-        <!--                    <ion-button>Duplicate</ion-button>-->
-        <!--                    <ion-button>Delete</ion-button>-->
-        <!--                </ion-buttons>-->
-        <!--            </ion-row>-->
-        <!--        </ion-grid>-->
-
-
     </ion-toolbar>
 
 </ion-header>
@@ -50,6 +35,8 @@
         <ion-item *ngFor="let movie of dataSource">
             <ion-img class="ion-padding-vertical" [src]="movie.posterUrl" (ionError)="onImgLoadError(movie)"></ion-img>
             <ion-label class="ion-margin-start">{{movie.title}} ({{movie.year}})</ion-label>
+            <ion-label>{{movie.seenStatus}}</ion-label>
+            <ion-label>{{movie.actors}}</ion-label>
         </ion-item>
     </ion-list>
 
@@ -59,5 +46,4 @@
         </ion-fab-button>
     </ion-fab>
 
-    <!--    <app-movie-dialog [isOpen]="isOpen"></app-movie-dialog>-->
 </ion-content>

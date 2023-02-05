@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import mockedMovies from '../../assets/mock-movies.json';
 import {Movie} from "../models/movie.model";
 import {SeenStatus} from "../models/seen-status.enum";
+import {ModalController} from "@ionic/angular";
+import {MovieDialog} from "../movie-dialog/movie-dialog";
 
 @Component({
     selector: 'app-home',
@@ -12,9 +14,8 @@ export class HomePage implements OnInit {
 
     originalDataSource: Movie[];
     dataSource: Movie[];
-    isOpen: boolean;
 
-    constructor() {
+    constructor(private modalController: ModalController) {
     }
 
     ngOnInit(): void {
@@ -33,14 +34,30 @@ export class HomePage implements OnInit {
 
     onSearchChange(event: any) {
         const filterText = event.detail.value.toLowerCase();
+        this.filterData(filterText);
+    }
+
+    filterData(filterText: string) {
         this.dataSource = this.originalDataSource.filter(movie => {
             return movie.title.toLowerCase().includes(filterText) ||
-                movie.year.toString().includes(filterText);
-        })
+                movie.year.toString().includes(filterText) ||
+                movie.actors.toLowerCase().includes(filterText);
+        });
     }
 
-    onAddMovie() {
-        this.isOpen = true;
-    }
+    async onAddMovie() {
+        const modal = await this.modalController.create({
+            component: MovieDialog,
+            componentProps: {
+                movie: new Movie()
+            },
+        });
+        modal.present();
 
+        const { data, role } = await modal.onWillDismiss();
+        if (role === 'confirm') {
+            this.originalDataSource.push(data);
+            this.dataSource = [...this.originalDataSource];
+        }
+    }
 }
