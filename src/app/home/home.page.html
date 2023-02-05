@@ -1,20 +1,63 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-grid>
+            <ion-row class="ion-justify-content-start">
+                <ion-col>
+                    <ion-searchbar placeholder="Search movies" (ionChange)="onSearchChange($event)"></ion-searchbar>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-end">
+                <ion-col>
+                    <ion-label class="ion-padding-start">{{dataSource.length}} movies</ion-label>
+                </ion-col>
+                <ion-col>
+                    <ion-buttons class="ion-justify-content-end">
+                        <ion-button>Edit</ion-button>
+                        <ion-button>Duplicate</ion-button>
+                        <ion-button color="danger">Delete</ion-button>
+                    </ion-buttons>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+<!--        <ion-grid>-->
+<!--            <ion-row>-->
+<!--                <ion-searchbar placeholder="Search movies"></ion-searchbar>-->
+<!--            </ion-row>-->
+<!--            <ion-row>-->
+<!--                <ion-label class="ion-padding-start" slot="start">{{dataSource.length}} movies</ion-label>-->
+<!--                <ion-buttons slot="end">-->
+<!--                    <ion-button>Edit</ion-button>-->
+<!--                    <ion-button>Duplicate</ion-button>-->
+<!--                    <ion-button>Delete</ion-button>-->
+<!--                </ion-buttons>-->
+<!--            </ion-row>-->
+<!--        </ion-grid>-->
+
+
+    </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+    <!--    <ion-header>-->
+    <!--        <ion-toolbar>-->
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+    <!--        </ion-toolbar>-->
+    <!--    </ion-header>-->
+
+    <ion-list>
+        <ion-item *ngFor="let movie of dataSource">
+            <ion-img class="ion-padding-vertical" [src]="movie.posterUrl" (ionError)="onImgLoadError(movie)"></ion-img>
+            <ion-label class="ion-margin-start">{{movie.title}} ({{movie.year}})</ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-fab>
+        <ion-fab-button (click)="onAddMovie()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+<!--    <app-movie-dialog [isOpen]="isOpen"></app-movie-dialog>-->
 </ion-content>

@@ -1,27 +1,17 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+ion-searchbar {
+    padding-inline-start: 16px;
+    padding-inline-end: 16px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-img { // movie poster
+    width: 50px;
+    height: auto;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+ion-content {
+    ion-fab-button { // add movie button
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+    }
 }
