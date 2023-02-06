@@ -8,8 +8,8 @@ export class Movie {
     genres: Array<string>;
     director: string;
     actors: string;
-    posterUrl: string;
-    runtime: number; // duration in minutes
+    posterUrl: string = '../../assets/NoImageAvailable.jpg';
+    runtime: number = 0; // duration in minutes
     seenStatus: SeenStatus = SeenStatus.HOME;
 
     // UI properties

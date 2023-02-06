@@ -7,7 +7,6 @@ import {MovieDialog} from "../movie-dialog/movie-dialog";
 
 export enum FilterType {
     ALL = 'ALL',
-    TITLE = 'TITLE',
     YEAR = 'YEAR',
     SEEN_STATUS = 'SEEN_STATUS'
 }
@@ -29,7 +28,11 @@ export class HomePage implements OnInit {
     ngOnInit(): void {
         // TODO: Remove this code, only exists because the mock-movies.json movies don't have the seenStatus property
         this.originalDataSource = mockedMovies.movies.map((movie: any) => {
-            movie.seenStatus = SeenStatus.HOME;
+            if (movie.year > 2010) {
+                movie.seenStatus = SeenStatus.CINEMA;
+            } else {
+                movie.seenStatus = SeenStatus.HOME;
+            }
             return movie;
         });
         this.dataSource = [...this.originalDataSource];
@@ -103,10 +106,6 @@ export class HomePage implements OnInit {
         } else {
             accordion.value = undefined;
         }
-
-    }
-
-    onLabelClick() {
 
     }
 }

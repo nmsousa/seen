@@ -13,9 +13,7 @@
                 </ion-col>
                 <ion-col>
                     <ion-buttons class="ion-justify-content-end">
-                        <ion-button fill="solid">Edit</ion-button>
-                        <ion-button fill="solid">Duplicate</ion-button>
-                        <ion-button fill="solid" color="danger">Delete</ion-button>
+                        <ion-button class="ion-padding-end" color="danger" fill="solid">Delete Selected</ion-button>
                     </ion-buttons>
                 </ion-col>
             </ion-row>
@@ -60,14 +58,20 @@
                     <ion-accordion-group #accordionGroup>
                         <ion-accordion value="details">
                             <div class="ion-padding" slot="content">
+                                <ion-title class="ion-no-padding" color="medium">Genres</ion-title>
+                                <ion-label class="ion-text-wrap">{{movie.genres}}</ion-label>
+                                <br>
                                 <ion-title class="ion-no-padding" color="medium">Plot</ion-title>
                                 <ion-label class="ion-text-wrap">{{movie.plot}}</ion-label>
+                                <br>
+                                <ion-title class="ion-no-padding" color="medium">Actors</ion-title>
+                                <ion-label class="ion-text-wrap">{{movie.actors}}</ion-label>
                                 <br>
                                 <ion-title class="ion-no-padding" color="medium">Director</ion-title>
                                 <ion-label class="ion-text-wrap">{{movie.director}}</ion-label>
                                 <br>
-                                <ion-title class="ion-no-padding" color="medium">Actors</ion-title>
-                                <ion-label class="ion-text-wrap">{{movie.actors}}</ion-label>
+                                <ion-title class="ion-no-padding" color="medium">Runtime</ion-title>
+                                <ion-label class="ion-text-wrap">{{movie.runtime}} minutes</ion-label>
                             </div>
                         </ion-accordion>
                     </ion-accordion-group>
