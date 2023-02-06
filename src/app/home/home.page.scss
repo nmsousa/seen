@@ -4,23 +4,44 @@ ion-searchbar {
 }
 
 ion-content {
+    ion-item {
+        --inner-padding-end: 0px;
 
-    .main-details-row {
-        padding-top: 6px;
-        padding-bottom: 6px;
+        .main-details-row {
+            padding-top: 6px;
+            padding-bottom: 6px;
 
-        ion-img { // movie poster
-            width: 50px;
-            height: auto;
-        }
+            ion-img { // movie poster
+                width: 50px;
+                height: auto;
+            }
 
-        .movie-title-label {
-            margin-bottom: 6px;
-        }
+            .movie-title-label {
+                margin-bottom: 8px;
+                white-space: normal;
+            }
 
-        .movie-year-label {
-            margin-bottom: 6px;
-            color: var(--ion-color-medium);
+            .movie-year-label {
+                margin-bottom: 8px;
+                width: fit-content; // to avoid a large clickable area
+                color: var(--ion-color-medium);
+            }
+
+            .show-details-col {
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+
+                .chevron-open {
+                    transition: 0.3s transform ease-in-out;
+                    transform: rotate(180deg);
+                }
+
+                .chevron-close {
+                    transition: 0.3s transform ease-in-out;
+                    transform: rotate(0);
+                }
+            }
         }
     }
 
