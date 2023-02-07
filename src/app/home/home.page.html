@@ -38,7 +38,8 @@
                             <div (click)="onFilterByYear(movie.year)" class="movie-year-label">
                                 {{movie.year}}
                             </div>
-                            <ion-label (click)="onFilterByStatus(movie.seenStatus)" color="primary">
+                            <ion-label (click)="onFilterByStatus(movie.seenStatus)" class="movie-seen-status-label"
+                                       color="primary">
                                 {{movie.seenStatus}}
                             </ion-label>
                         </ion-col>
@@ -71,7 +72,8 @@
                                 <ion-label class="ion-text-wrap">{{movie.director}}</ion-label>
                                 <br>
                                 <ion-title class="ion-no-padding" color="medium">Runtime</ion-title>
-                                <ion-label class="ion-text-wrap">{{movie.runtime}} minutes</ion-label>
+                                <ion-label *ngIf="movie.runtime > 0" class="ion-text-wrap">{{movie.runtime}}minutes
+                                </ion-label>
                             </div>
                         </ion-accordion>
                     </ion-accordion-group>
@@ -81,9 +83,11 @@
             <!-- Slide Options -->
             <ion-item-options>
                 <ion-item-option>
+                    <ion-label class="ion-hide-sm-down">Edit</ion-label>
                     <ion-icon slot="icon-only" name="create-outline"></ion-icon>
                 </ion-item-option>
-                <ion-item-option color="danger">
+                <ion-item-option (click)="onDeleteMovie(movie)" color="danger">
+                    <ion-label class="ion-hide-sm-down">Delete</ion-label>
                     <ion-icon slot="icon-only" name="trash"></ion-icon>
                 </ion-item-option>
             </ion-item-options>

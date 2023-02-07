@@ -9,7 +9,7 @@ export class Movie {
     director: string;
     actors: string;
     posterUrl: string = '../../assets/NoImageAvailable.jpg';
-    runtime: number = 0; // duration in minutes
+    runtime: number; // duration in minutes
     seenStatus: SeenStatus = SeenStatus.HOME;
 
     // UI properties

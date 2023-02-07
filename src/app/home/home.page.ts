@@ -108,4 +108,9 @@ export class HomePage implements OnInit {
         }
 
     }
+
+    onDeleteMovie(movie: Movie) {
+        this.originalDataSource = this.originalDataSource.filter(movieItem => movie.id !== movieItem.id);
+        this.dataSource = this.dataSource.filter(movieItem => movie.id !== movieItem.id);
+    }
 }
