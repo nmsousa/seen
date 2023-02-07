@@ -2,6 +2,14 @@
     <ion-toolbar>
         <ion-title>Movie Details</ion-title>
     </ion-toolbar>
+    <!-- Search -->
+    <ion-searchbar (ionChange)="onSearchChange()" [(ngModel)]="filterText"
+                   debounce="300"
+                   placeholder="Search a movie"></ion-searchbar>
+    <ion-select (ionChange)="onSelectMovie($event)">
+        <ion-select-option *ngFor="let item of filteredMovies"
+                           [value]="item">{{item.original_title}}</ion-select-option>
+    </ion-select>
     <!-- Title -->
     <ion-item>
         <ion-label position="floating">Title</ion-label>
@@ -49,9 +57,10 @@
 
     <!-- Action Buttons -->
     <ion-buttons>
-        <ion-button (click)="cancel()">Close</ion-button>
-        <ion-button color="primary" fill="solid" type="submit"
-        >Create
+        <ion-button (click)="getMovie()">
+            <ion-icon name="refresh-outline"></ion-icon>
         </ion-button>
+        <ion-button (click)="cancel()">Close</ion-button>
+        <ion-button (click)="confirm()" color="primary" fill="solid">Create</ion-button>
     </ion-buttons>
 </ion-content>

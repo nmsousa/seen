@@ -6,12 +6,14 @@ import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from "@angular/common/http";
+import {Ng2CompleterModule} from "ng2-completer";
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, IonicModule.forRoot({
+    imports: [BrowserModule, HttpClientModule, IonicModule.forRoot({
         mode: 'md'
-    }), AppRoutingModule],
+    }), AppRoutingModule, Ng2CompleterModule],
     providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
     bootstrap: [AppComponent]
 })
