@@ -1,5 +1,16 @@
 ion-buttons {
     position: fixed;
     right: 20px;
-    bottom: 20px;
+    bottom: 16px;
+}
+
+.results-list {
+    z-index: 1;
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    max-height: 400px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
 }

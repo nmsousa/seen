@@ -36,6 +36,9 @@ export class HomePage implements OnInit {
             return movie;
         });
         this.dataSource = [...this.originalDataSource];
+
+        // TODO: Delete this later
+        this.onAddMovie();
     }
 
     onImgLoadError(movie: Movie) {

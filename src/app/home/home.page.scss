@@ -32,9 +32,10 @@ ion-content {
             }
 
             .show-details-col {
+                padding-top: 0;
                 display: flex;
                 justify-content: flex-end;
-                align-items: flex-end;
+                align-items: flex-start;
 
                 .chevron-open {
                     transition: 0.3s transform ease-in-out;

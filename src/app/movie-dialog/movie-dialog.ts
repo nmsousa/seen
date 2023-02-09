@@ -12,8 +12,9 @@ import {MovieWsService} from "../services/movie-ws.service";
 export class MovieDialog {
     movie: Movie;
     SeenStatus = SeenStatus;
-    filteredMovies: any[];
+    filteredMovies: Movie[] = [];
     filterText: string;
+    showMoviesList: boolean;
 
     constructor(private modalController: ModalController, private movieWsService: MovieWsService) {
     }
@@ -28,19 +29,31 @@ export class MovieDialog {
 
     // TODO: Delete this
     getMovie() {
-        this.movieWsService.getMovies(this.movie.title).subscribe(result => {
-            this.filteredMovies = result;
+        this.movieWsService.getMovie(this.movie.id).subscribe(result => {
+            this.movie = result;
         })
     }
 
     onSearchChange() {
-        this.movieWsService.getMovies(this.filterText).subscribe(result => {
-            this.filteredMovies = result;
-        })
+        if (this.filterText) {
+            this.movieWsService.getMovies(this.filterText).subscribe(result => {
+                this.filteredMovies = result;
+                this.updateShowMoviesList();
+            })
+        } else {
+            this.updateShowMoviesList();
+        }
     }
 
-    onSelectMovie(event: any) {
-        this.movie.title = event.detail.value.original_title;
-        this.movie.year = event.detail.value.release_date.split('-')[0];
+    onSelectMovie(movie: any) {
+        this.filterText = '';
+        this.movieWsService.getMovie(movie.id).subscribe(movie => {
+            this.movie = movie;
+        });
     }
+
+    updateShowMoviesList() {
+        this.showMoviesList = !!this.filterText && this.filteredMovies && this.filteredMovies.length > 0;
+    }
+
 }
