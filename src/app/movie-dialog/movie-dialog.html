@@ -92,8 +92,9 @@
         </ion-item>
         <!-- Poster -->
         <ion-item color="light">
-            <ion-label position="floating">Poster URL</ion-label>
-            <ion-input [(ngModel)]="movie.posterUrl" type="text"></ion-input>
+            <!--            <ion-label position="floating">Poster URL</ion-label>-->
+            <!--            <ion-input [(ngModel)]="movie.posterUrl" type="text"></ion-input>-->
+            <ion-img [src]="imagesBaseUrl + movie.posterUrl"></ion-img>
         </ion-item>
         <!-- Runtime -->
         <ion-item>
