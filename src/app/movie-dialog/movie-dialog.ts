@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ModalController} from "@ionic/angular";
 import {Movie} from "../models/movie.model";
 import {SeenStatus} from "../models/seen-status.enum";
@@ -9,21 +9,14 @@ import {MovieWsService} from "../services/movie-ws.service";
     templateUrl: './movie-dialog.html',
     styleUrls: ['./movie-dialog.scss'],
 })
-export class MovieDialog implements OnInit {
+export class MovieDialog {
     movie: Movie;
     SeenStatus = SeenStatus;
     filteredMovies: Movie[] = [];
     filterText: string;
     showMoviesList: boolean;
-    imagesBaseUrl: string;
 
     constructor(private modalController: ModalController, private movieWsService: MovieWsService) {
-    }
-
-    ngOnInit(): void {
-        this.movieWsService.getConfigurationImageBaseUrl().subscribe(imageBaseUrl => {
-            this.imagesBaseUrl = imageBaseUrl;
-        });
     }
 
     cancel() {

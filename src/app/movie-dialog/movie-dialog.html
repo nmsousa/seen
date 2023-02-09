@@ -51,57 +51,65 @@
 
     <!-- Form List -->
     <ion-list lines="none">
-        <!-- Title -->
-        <ion-item>
-            <ion-label position="floating">Title</ion-label>
-            <ion-input [(ngModel)]="movie.title" type="text"></ion-input>
-        </ion-item>
-        <!-- Year -->
-        <ion-item color="light">
-            <ion-label position="floating">Year</ion-label>
-            <ion-input [(ngModel)]="movie.year" type="number"></ion-input>
-        </ion-item>
-        <!-- Genres -->
-        <ion-item>
-            <!--            <ion-label position="floating">Genres</ion-label>-->
-            <ion-chip *ngFor="let genre of movie.genres">{{genre.name}}</ion-chip>
-            <!--            <ion-input [(ngModel)]="movie.genres" type="text"></ion-input>-->
-        </ion-item>
-        <!-- Plot -->
-        <ion-item color="light">
-            <ion-label style="white-space: break-spaces;">{{movie.plot}}</ion-label>
-        </ion-item>
-        <!-- Actors -->
-        <ion-item>
-            <ion-label position="floating">Actors</ion-label>
-            <ion-input [(ngModel)]="movie.actors" type="text"></ion-input>
-        </ion-item>
-        <!-- Director -->
-        <ion-item color="light">
-            <ion-label position="floating">Director</ion-label>
-            <ion-input [(ngModel)]="movie.director" type="text"></ion-input>
-        </ion-item>
-        <!-- Seen Status -->
-        <ion-item>
-            <ion-label position="floating">Seen Status</ion-label>
-            <ion-select [(ngModel)]="movie.seenStatus">
-                <ion-select-option [value]="SeenStatus.HOME">Home</ion-select-option>
-                <ion-select-option [value]="SeenStatus.WATCHLIST">Watchlist</ion-select-option>
-                <ion-select-option [value]="SeenStatus.CINEMA">Cinema</ion-select-option>
-            </ion-select>
-        </ion-item>
-        <!-- Poster -->
-        <ion-item color="light">
-            <!--            <ion-label position="floating">Poster URL</ion-label>-->
-            <!--            <ion-input [(ngModel)]="movie.posterUrl" type="text"></ion-input>-->
-            <ion-img [src]="imagesBaseUrl + movie.posterUrl"></ion-img>
-        </ion-item>
-        <!-- Runtime -->
-        <ion-item>
-            <ion-label position="floating">Runtime</ion-label>
-            <ion-input [(ngModel)]="movie.runtime" type="number"></ion-input>
-            <!--            <ion-label>{{movie.runtime}}</ion-label>-->
-        </ion-item>
+        <ion-grid>
+            <ion-row class="ion-justify-content-start">
+                <ion-col *ngIf="movie.posterUrl !== '../../assets/NoImageAvailable.jpg'" size="auto">
+                    <!-- Poster -->
+                    <ion-item>
+                        <ion-img [src]="movie.posterUrl"></ion-img>
+                    </ion-item>
+                </ion-col>
+                <ion-col class="ion-no-padding">
+                    <!-- Title -->
+                    <ion-item>
+                        <ion-label color="primary" position="floating">Title</ion-label>
+                        <ion-input [(ngModel)]="movie.title" type="text"></ion-input>
+                    </ion-item>
+                    <!-- Year -->
+                    <ion-item color="light">
+                        <ion-label color="primary" position="floating">Year</ion-label>
+                        <ion-input [(ngModel)]="movie.year" type="number"></ion-input>
+                    </ion-item>
+                    <!-- Genres -->
+                    <ion-item *ngIf="movie.genres" class="ion-no-padding">
+                        <!--            <ion-label position="floating">Genres</ion-label>-->
+                        <ion-chip *ngFor="let genre of movie.genres">{{genre.name}}</ion-chip>
+                        <!--            <ion-input [(ngModel)]="movie.genres" type="text"></ion-input>-->
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <!-- Plot -->
+            <ion-item *ngIf="movie.plot" color="light">
+                <ion-label style="white-space: break-spaces;">{{movie.plot}}</ion-label>
+            </ion-item>
+            <!-- Actors -->
+            <ion-item>
+                <ion-label color="primary" position="floating">Actors</ion-label>
+                <ion-input [(ngModel)]="movie.actors" type="text"></ion-input>
+            </ion-item>
+            <!-- Director -->
+            <ion-item color="light">
+                <ion-label color="primary" position="floating">Director</ion-label>
+                <ion-input [(ngModel)]="movie.director" type="text"></ion-input>
+            </ion-item>
+            <!-- Seen Status -->
+            <ion-item>
+                <ion-label color="primary" position="floating">Seen Status</ion-label>
+                <ion-select [(ngModel)]="movie.seenStatus">
+                    <ion-select-option [value]="SeenStatus.HOME">Home</ion-select-option>
+                    <ion-select-option [value]="SeenStatus.WATCHLIST">Watchlist</ion-select-option>
+                    <ion-select-option [value]="SeenStatus.CINEMA">Cinema</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <!-- Runtime -->
+            <ion-item>
+                <ion-label color="primary" position="floating">Runtime</ion-label>
+                <ion-input [(ngModel)]="movie.runtime" type="number"></ion-input>
+                <!--            <ion-label>{{movie.runtime}}</ion-label>-->
+            </ion-item>
+        </ion-grid>
+
     </ion-list>
 </ion-content>
 
