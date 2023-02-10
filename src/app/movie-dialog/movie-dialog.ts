@@ -16,6 +16,14 @@ export class MovieDialog {
     filterText: string;
     showMoviesList: boolean;
 
+    selectedCars = [3];
+    cars = [
+        {id: 1, name: 'Volvo'},
+        {id: 2, name: 'Saab', disabled: true},
+        {id: 3, name: 'Opel'},
+        {id: 4, name: 'Audi'},
+    ];
+
     constructor(private modalController: ModalController, private movieWsService: MovieWsService) {
     }
 
@@ -27,7 +35,7 @@ export class MovieDialog {
         return this.modalController.dismiss(this.movie, 'confirm');
     }
 
-    // TODO: Delete this
+    // TODO: Delete this?
     getMovie() {
         this.movieWsService.getMovie(this.movie.id).subscribe(result => {
             this.movie = result;

@@ -25,10 +25,12 @@ ion-content {
                 margin-bottom: 8px;
                 width: fit-content; // to avoid a large clickable area
                 color: var(--ion-color-medium);
+                cursor: pointer;
             }
 
             .movie-seen-status-label {
                 width: fit-content; // to avoid a large clickable area
+                cursor: pointer;
             }
 
             .show-details-col {

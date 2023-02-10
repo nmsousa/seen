@@ -6,7 +6,7 @@ import {HomePage} from './home.page';
 
 import {HomePageRoutingModule} from './home-routing.module';
 import {MovieDialog} from "../movie-dialog/movie-dialog";
-import {Ng2CompleterModule} from "ng2-completer";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -15,7 +15,7 @@ import {Ng2CompleterModule} from "ng2-completer";
         FormsModule,
         IonicModule,
         HomePageRoutingModule,
-        Ng2CompleterModule
+        NgSelectModule,
     ],
     declarations: [HomePage, MovieDialog]
 })

@@ -8,7 +8,8 @@ import {MovieDialog} from "../movie-dialog/movie-dialog";
 export enum FilterType {
     ALL = 'ALL',
     YEAR = 'YEAR',
-    SEEN_STATUS = 'SEEN_STATUS'
+    SEEN_STATUS = 'SEEN_STATUS',
+    GENRE = 'GENRE',
 }
 
 @Component({
@@ -36,9 +37,6 @@ export class HomePage implements OnInit {
             return movie;
         });
         this.dataSource = [...this.originalDataSource];
-
-        // TODO: Delete this later
-        this.onAddMovie();
     }
 
     onImgLoadError(movie: Movie) {
@@ -61,6 +59,11 @@ export class HomePage implements OnInit {
         this.filterType = FilterType.SEEN_STATUS;
     }
 
+    onFilterByGenre(genre: string) {
+        this.filterText = genre;
+        this.filterType = FilterType.GENRE;
+    }
+
     filterData() {
         const filter = this.filterText.toLowerCase();
         if (this.filterType === FilterType.ALL) {
@@ -79,6 +82,10 @@ export class HomePage implements OnInit {
         } else if (this.filterType === FilterType.SEEN_STATUS) {
             this.dataSource = this.originalDataSource.filter(movie => {
                 return movie.seenStatus && movie.seenStatus.toLowerCase().includes(filter);
+            });
+        } else if (this.filterType === FilterType.GENRE) {
+            this.dataSource = this.originalDataSource.filter(movie => {
+                return movie.genres && movie.genres.filter(genre => genre.toLowerCase() === filter).length > 0;
             });
         }
 

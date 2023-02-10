@@ -11,6 +11,7 @@
         <ion-item (click)="onSelectMovie(movie)" *ngFor="let movie of filteredMovies"
                   color="medium">
             {{movie.title}} ({{movie.year}})
+            <ion-chip *ngFor="let genre of movie.genres">{{genre}}</ion-chip>
         </ion-item>
     </ion-list>
 
@@ -71,11 +72,26 @@
                         <ion-input [(ngModel)]="movie.year" type="number"></ion-input>
                     </ion-item>
                     <!-- Genres -->
-                    <ion-item *ngIf="movie.genres" class="ion-no-padding">
-                        <!--            <ion-label position="floating">Genres</ion-label>-->
-                        <ion-chip *ngFor="let genre of movie.genres">{{genre.name}}</ion-chip>
-                        <!--            <ion-input [(ngModel)]="movie.genres" type="text"></ion-input>-->
-                    </ion-item>
+                    <!--                    <ion-item>-->
+                    <ion-label color="primary" position="floating">Genres</ion-label>
+                    <!--                        <ion-chip *ngFor="let genre of movie.genres">{{genre}}</ion-chip>-->
+                    <!--            <ion-input [(ngModel)]="movie.genres" type="text"></ion-input>-->
+
+                    <!--                        <ng-select-->
+                    <!--                            [multiple]="true"-->
+                    <!--                            [hideSelected]="true"-->
+                    <!--                            [minTermLength]="2"-->
+                    <!--                            typeToSearchText="Please enter 2 or more characters"-->
+                    <!--                            [(ngModel)]="movie.genres">-->
+                    <!--                            <ng-option *ngFor="let genre of movie.genres" [value]="genre">{{genre}}</ng-option>-->
+                    <!--                            &lt;!&ndash;                            <ng-option [value]="'custom'">Custom</ng-option>&ndash;&gt;-->
+                    <!--                        </ng-select>-->
+
+                    <ng-select [(ngModel)]="movie.genres" [addTag]="true" [multiple]="true">
+                        <ng-option *ngFor="let genre of movie.genres" [value]="genre">{{genre}}</ng-option>
+                    </ng-select>
+
+                    <!--                    </ion-item>-->
                 </ion-col>
             </ion-row>
 

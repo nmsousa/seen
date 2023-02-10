@@ -14,3 +14,16 @@ ion-buttons {
     border-bottom-right-radius: 20px;
     cursor: pointer;
 }
+
+:host ::ng-deep {
+    .ng-select.custom {
+        border: 0px;
+        min-height: 0px;
+        border-radius: 0;
+    }
+
+    .ng-select.custom .ng-select-container {
+        min-height: 0px;
+        border-radius: 0;
+    }
+}

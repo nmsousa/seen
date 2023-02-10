@@ -61,7 +61,9 @@
                             <div class="ion-padding" slot="content">
                                 <ion-title class="ion-no-padding" color="medium">Genres</ion-title>
                                 <!--                                <ion-label class="ion-text-wrap">{{movie.genres}}</ion-label>-->
-                                <ion-chip *ngFor="let genre of movie.genres">{{genre.name}}</ion-chip>
+                                <ion-chip (click)="onFilterByGenre(genre)"
+                                          *ngFor="let genre of movie.genres">{{genre}}
+                                </ion-chip>
                                 <br>
                                 <ion-title class="ion-no-padding" color="medium">Plot</ion-title>
                                 <ion-label class="ion-text-wrap">{{movie.plot}}</ion-label>

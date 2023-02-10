@@ -1,12 +1,12 @@
 import {SeenStatus} from "./seen-status.enum";
-import {Genre, MovieWS} from "./ws/movie-ws.model";
+import {MovieWS} from "./ws/movie-ws.model";
 
 export class Movie {
     id: number;
     title: string;
     year: number;
     plot: string;
-    genres: Array<Genre>;
+    genres: Array<string>;
     director: string;
     actors: string;
     posterUrl: string = '../../assets/NoImageAvailable.jpg';
@@ -22,11 +22,13 @@ export class Movie {
             this.id = movieWS.id;
             this.title = movieWS.title;
             this.year = new Date(movieWS.release_date).getFullYear();
-            this.genres = movieWS.genres;
             this.plot = movieWS.overview;
             this.runtime = movieWS.runtime;
-            this.posterUrl = movieWS.poster_path;
             this.originalLanguage = movieWS.original_language;
+            if (movieWS.poster_path) {
+                this.posterUrl = movieWS.poster_path;
+            }
         }
     }
+
 }
