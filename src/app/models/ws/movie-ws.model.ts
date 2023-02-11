@@ -3,6 +3,10 @@ export interface Genre {
     name: string;
 }
 
+export interface GenreWS {
+    genres: Genre[];
+}
+
 export interface ProductionCountry {
     iso_3166_1: string;
     name: string;

@@ -8,9 +8,10 @@
         "start": "ng serve",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
-        "prod": "ionic build --prod --base-ref \"https://nmsousa.github.io/seen_site/\"",
         "test": "ng test",
-        "lint": "ng lint"
+        "lint": "ng lint",
+        "prod": "ionic build --prod --base-ref \"https://nmsousa.github.io/seen_site/\"",
+        "serve_ext": "ionic serve --external"
     },
     "private": true,
     "dependencies": {

@@ -12,3 +12,4 @@ export interface ConfigurationWS {
     images: Images;
     change_keys: string[];
 }
+

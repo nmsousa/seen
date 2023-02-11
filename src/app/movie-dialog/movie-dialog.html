@@ -88,8 +88,10 @@
                     <!--                        </ng-select>-->
 
                     <ng-select [(ngModel)]="movie.genres" [addTag]="true" [multiple]="true">
-                        <ng-option *ngFor="let genre of movie.genres" [value]="genre">{{genre}}</ng-option>
+                        <ng-option *ngFor="let genre of genres$ | async"
+                                   [value]="genre">{{genre}}</ng-option>
                     </ng-select>
+
 
                     <!--                    </ion-item>-->
                 </ion-col>

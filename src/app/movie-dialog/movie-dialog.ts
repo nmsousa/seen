@@ -1,20 +1,22 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalController} from "@ionic/angular";
 import {Movie} from "../models/movie.model";
 import {SeenStatus} from "../models/seen-status.enum";
 import {MovieWsService} from "../services/movie-ws.service";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-movie-dialog',
     templateUrl: './movie-dialog.html',
     styleUrls: ['./movie-dialog.scss'],
 })
-export class MovieDialog {
+export class MovieDialog implements OnInit {
     movie: Movie;
     SeenStatus = SeenStatus;
     filteredMovies: Movie[] = [];
     filterText: string;
     showMoviesList: boolean;
+    genres$: Observable<string[]>;
 
     selectedCars = [3];
     cars = [
@@ -27,12 +29,8 @@ export class MovieDialog {
     constructor(private modalController: ModalController, private movieWsService: MovieWsService) {
     }
 
-    cancel() {
-        return this.modalController.dismiss(null, 'cancel');
-    }
-
-    confirm() {
-        return this.modalController.dismiss(this.movie, 'confirm');
+    ngOnInit() {
+        this.genres$ = this.movieWsService.getMovieGenres();
     }
 
     // TODO: Delete this?
@@ -64,4 +62,20 @@ export class MovieDialog {
         this.showMoviesList = !!this.filterText && this.filteredMovies && this.filteredMovies.length > 0;
     }
 
+    cancel() {
+        return this.modalController.dismiss(null, 'cancel');
+    }
+
+    confirm() {
+        this.fixGenres();
+
+        return this.modalController.dismiss(this.movie, 'confirm');
+    }
+
+    fixGenres() {
+        if (this.movie.genres) {
+            // We need this fix because custom genres are being added as an object with the property 'label'
+            this.movie.genres = this.movie.genres.map((genre: any) => genre.label ? genre.label : genre);
+        }
+    }
 }
