@@ -5,15 +5,16 @@ import {FormsModule} from '@angular/forms';
 import {HomePage} from './home.page';
 
 import {HomePageRoutingModule} from './home-routing.module';
-import {MovieDialog} from "../movie-dialog/movie-dialog";
-import {NgSelectModule} from "@ng-select/ng-select";
-
+import {MovieDialog} from '../movie-dialog/movie-dialog';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
+        ScrollingModule,
         HomePageRoutingModule,
         NgSelectModule,
     ],

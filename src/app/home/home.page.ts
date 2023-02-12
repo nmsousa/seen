@@ -22,8 +22,10 @@ export class HomePage implements OnInit {
     dataSource: Movie[];
     filterText: string;
     filterType: FilterType = FilterType.ALL;
+    items: any;
 
     constructor(private modalController: ModalController) {
+        this.items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
     }
 
     ngOnInit(): void {
@@ -39,9 +41,8 @@ export class HomePage implements OnInit {
         this.dataSource = [...this.originalDataSource];
     }
 
-    onImgLoadError(movie: Movie) {
-        // Fallback image
-        movie.posterUrl = '../../assets/NoImageAvailable.jpg';
+    trackItems(index: number, itemObject: any) {
+        return itemObject.id;
     }
 
     onSearchChange(event: any) {
@@ -119,8 +120,15 @@ export class HomePage implements OnInit {
 
     }
 
-    onDeleteMovie(movie: Movie) {
-        this.originalDataSource = this.originalDataSource.filter(movieItem => movie.id !== movieItem.id);
-        this.dataSource = this.dataSource.filter(movieItem => movie.id !== movieItem.id);
+    onDeleteMovie(movie?: Movie) {
+        if (movie) {
+            this.originalDataSource = this.originalDataSource.filter(movieItem => movie.id !== movieItem.id);
+            this.dataSource = this.dataSource.filter(movieItem => movie.id !== movieItem.id);
+        }
+    }
+
+    onImgLoadError(movie: Movie) {
+        // Fallback image
+        movie.posterUrl = '../../assets/NoImageAvailable.jpg';
     }
 }
