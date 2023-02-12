@@ -8,6 +8,7 @@ import {HomePageRoutingModule} from './home-routing.module';
 import {MovieDialog} from '../movie-dialog/movie-dialog';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MovieListComponent} from "../movie-list/movie-list.component";
 
 @NgModule({
     imports: [
@@ -18,7 +19,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
         HomePageRoutingModule,
         NgSelectModule,
     ],
-    declarations: [HomePage, MovieDialog]
+    declarations: [HomePage, MovieDialog, MovieListComponent]
 })
 export class HomePageModule {
 }

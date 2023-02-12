@@ -3,64 +3,8 @@ ion-searchbar {
     padding-inline-end: 16px;
 }
 
-ion-content {
-    // Otherwise it's now shown
-    .virtual-scroll-viewport {
-        width: 100%;
-        height: 100%;
-    }
-
-    ion-item {
-        --inner-padding-end: 0px;
-
-        .main-details-row {
-            padding-top: 6px;
-            padding-bottom: 6px;
-
-            ion-img { // movie poster
-                width: 50px;
-                height: auto;
-            }
-
-            .movie-title-label {
-                margin-bottom: 8px;
-                white-space: normal;
-            }
-
-            .movie-year-label {
-                margin-bottom: 8px;
-                width: fit-content; // to avoid a large clickable area
-                color: var(--ion-color-medium);
-                cursor: pointer;
-            }
-
-            .movie-seen-status-label {
-                width: fit-content; // to avoid a large clickable area
-                cursor: pointer;
-            }
-
-            .show-details-col {
-                padding-top: 0;
-                display: flex;
-                justify-content: flex-end;
-                align-items: flex-start;
-
-                .chevron-open {
-                    transition: 0.3s transform ease-in-out;
-                    transform: rotate(180deg);
-                }
-
-                .chevron-close {
-                    transition: 0.3s transform ease-in-out;
-                    transform: rotate(0);
-                }
-            }
-        }
-    }
-
-    ion-fab-button { // add movie button
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-    }
+ion-fab-button { // add movie button
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 }

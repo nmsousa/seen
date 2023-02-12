@@ -2,15 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import mockedMovies from '../../assets/mock-movies.json';
 import {Movie} from "../models/movie.model";
 import {SeenStatus} from "../models/seen-status.enum";
-import {ModalController} from "@ionic/angular";
 import {MovieDialog} from "../movie-dialog/movie-dialog";
-
-export enum FilterType {
-    ALL = 'ALL',
-    YEAR = 'YEAR',
-    SEEN_STATUS = 'SEEN_STATUS',
-    GENRE = 'GENRE',
-}
+import {ModalController} from "@ionic/angular";
+import {FilterType, MovieFilter} from "../models/movie-filter";
 
 @Component({
     selector: 'app-home',
@@ -22,10 +16,8 @@ export class HomePage implements OnInit {
     dataSource: Movie[];
     filterText: string;
     filterType: FilterType = FilterType.ALL;
-    items: any;
 
     constructor(private modalController: ModalController) {
-        this.items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
     }
 
     ngOnInit(): void {
@@ -41,28 +33,9 @@ export class HomePage implements OnInit {
         this.dataSource = [...this.originalDataSource];
     }
 
-    trackItems(index: number, itemObject: any) {
-        return itemObject.id;
-    }
-
     onSearchChange(event: any) {
         this.filterText = event.detail.value;
         this.filterData();
-    }
-
-    onFilterByYear(year: number) {
-        this.filterText = year.toString();
-        this.filterType = FilterType.YEAR;
-    }
-
-    onFilterByStatus(status: SeenStatus) {
-        this.filterText = status;
-        this.filterType = FilterType.SEEN_STATUS;
-    }
-
-    onFilterByGenre(genre: string) {
-        this.filterText = genre;
-        this.filterType = FilterType.GENRE;
     }
 
     filterData() {
@@ -110,25 +83,13 @@ export class HomePage implements OnInit {
         }
     }
 
-    onShowDetails(movie: Movie, accordion: any) {
-        movie.isExpanded = !movie.isExpanded;
-        if (!accordion.value) {
-            accordion.value = 'details';
-        } else {
-            accordion.value = undefined;
-        }
-
+    onDeleteMovie(movie: Movie) {
+        this.originalDataSource = this.originalDataSource.filter(movieItem => movie.id !== movieItem.id);
+        this.dataSource = this.dataSource.filter(movieItem => movie.id !== movieItem.id);
     }
 
-    onDeleteMovie(movie?: Movie) {
-        if (movie) {
-            this.originalDataSource = this.originalDataSource.filter(movieItem => movie.id !== movieItem.id);
-            this.dataSource = this.dataSource.filter(movieItem => movie.id !== movieItem.id);
-        }
-    }
-
-    onImgLoadError(movie: Movie) {
-        // Fallback image
-        movie.posterUrl = '../../assets/NoImageAvailable.jpg';
+    onFilter(filter: MovieFilter) {
+        this.filterType = filter.filterType;
+        this.filterText = filter.filterText;
     }
 }
